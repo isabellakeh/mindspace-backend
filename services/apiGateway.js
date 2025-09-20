@@ -33,7 +33,7 @@ const services = {
   tracking: process.env.TRACKING_SERVICE_URL || 'http://localhost:3004',
   events: process.env.EVENT_SERVICE_URL || 'http://localhost:3005',
 //   notifications: process.env.NOTIFICATION_SERVICE_URL || 'http://localhost:3006',
-  // ai: process.env.AI_SERVICE_URL || 'http://localhost:3007', // COMMENTED OUT
+  ai: process.env.AI_SERVICE_URL || 'http://localhost:3007', // COMMENTED OUT
 };
 
 // Health check
@@ -85,7 +85,7 @@ app.use('/api/chats', createProxy(services.chat, { '^/api/chats': '' }));
 app.use('/api/tracking', createProxy(services.tracking, { '^/api/tracking': '' }));
 app.use('/api/events', createProxy(services.events, { '^/api/events': '' }));
 // app.use('/api/notifications', createProxy(services.notifications, { '^/api/notifications': '' }));
-// app.use('/api/ai', createProxy(services.ai, { '^/api/ai': '' })); // COMMENTED OUT
+app.use('/api/ai', createProxy(services.ai, { '^/api/ai': '' })); // COMMENTED OUT
 
 // Handle 404
 app.use('*', (req, res) => {
